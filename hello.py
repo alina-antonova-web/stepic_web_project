@@ -3,6 +3,12 @@ def application(environ, start_response):
     headers = [
         ('Content-Type', 'text/plain')
     ]
-    body = str('\r\n'.join(environ['QUERY_STRING'].split('&')), encoding="utf8")
+    body = ""
+    for each in environ['QUERY_STRING']:
+        if each == '&':
+            body += "\n"
+        else:
+            body += each
+
     start_response(status, headers)
-    return [body]
+    return body

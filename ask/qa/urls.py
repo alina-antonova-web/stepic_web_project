@@ -1,8 +1,8 @@
-from django.conf.urls import url, include
+from django.conf.urls import url, include, patterns
 
 from qa.views import test
 
-urlpatterns = patterns('qa.views',
+urlpatterns = patterns('',
 	url(r'^$', test, name='home'),
 	url(r'^login/$', test, name='login'),
 	url(r'^signup/$', test, name='signup'),

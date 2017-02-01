@@ -1,4 +1,4 @@
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 
 from qa.views import test
 

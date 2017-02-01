@@ -18,7 +18,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^$', 'qa.views', name='home'),
-    url(r'^', include('qa.urls')),
+    url(r'^', include("qa.urls")),
     url(r'^admin/', admin.site.urls),
 ]

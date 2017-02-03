@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 class QuestionManager(models.Manager):
     def new(self):
@@ -9,14 +11,14 @@ class QuestionManager(models.Manager):
 class Question(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
-    added_at = models.DateTimeField(blank=True)
-    rating = models.IntegerField()
-    author = django.contrib.auth.models.User
-    likes = models.ManyToManyField(Like)
+    added_at = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(default=0)
+    author = models.ForeignKey(User, default=1)
+    likes = models.ManyToManyField(User, related_name='questions', blank=True)
     objects = QuestionManager()
 
 class Answer(models.Model):
     text = models.TextField()
-    added_at = models.DateTimeField(blank=True)
-    question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)
-    author = django.contrib.auth.models.User
+    added_at = models.DateTimeField(auto_now_add=True)
+    question = models.ForeignKey(Question, default=1, on_delete=models.SET_NULL)
+    author = models.ForeignKey(User, default=1)

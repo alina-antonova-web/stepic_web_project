@@ -20,5 +20,5 @@ class Question(models.Model):
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
-    question = models.ForeignKey(Question, default=1, on_delete=models.SET_NULL)
+    question = models.ForeignKey(Question, default=1)
     author = models.ForeignKey(User, default=1)

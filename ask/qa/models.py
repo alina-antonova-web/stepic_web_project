@@ -8,7 +8,7 @@ class QuestionManager(models.Manager):
     def popular(self):
         return self.order_by('-rating')
 
-classQuestion(models.Model):
+class Question(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)

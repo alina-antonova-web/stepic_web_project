@@ -38,7 +38,8 @@ def popular_questions_list(request):
 @require_GET
 def question_details(request, num):
     question = get_object_or_404(Question, id=num)
+    answers = Answer.object.filter(question=num).order_by('-added_at')
     return render(request, 'question.html', {
         'question': question,
-        'answers': question.answers.all()[:],
+        'answers': answers.all()[:],
     })

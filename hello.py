@@ -3,7 +3,7 @@ def application(environ, start_response):
     headers = [
         ('Content-Type', 'text/plain')
     ]
-    body = ""
+    body = "OKKKKK"
     for each in environ['QUERY_STRING']:
         if each == '&':
             body += "\n"

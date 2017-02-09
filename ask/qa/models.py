@@ -8,7 +8,7 @@ class QuestionManager(models.Manager):
     def popular(self):
         return self.order_by('-rating')
 
-class Question(models.Model):
+classQuestion(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
@@ -18,7 +18,7 @@ class Question(models.Model):
     objects = QuestionManager()
 
     def get_url(self):
-        return "/question/".format(self.pk)."/"
+        return "/question/{}/".format(self.pk)
 
 class Answer(models.Model):
     text = models.TextField()

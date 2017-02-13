@@ -14,6 +14,7 @@ class Question(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(User, default=1)
+    author_id = models.ForeignKey(User, default=1)
     likes = models.ManyToManyField(User, related_name='questions', blank=True)
     objects = QuestionManager()
 
@@ -25,3 +26,4 @@ class Answer(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, default=1)
     author = models.ForeignKey(User, default=1)
+    author_id = models.ForeignKey(User, default=1)

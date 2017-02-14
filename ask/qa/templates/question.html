@@ -8,11 +8,11 @@
     <h1>{{ question.title }}</h1>
     <div>{{ question.text }}</div>
     <hr>
-    <ul>
-    {% for answer in answers %}
-        <li>{{ answer.text }}</li>
-    {% endfor %}
-    </ul>
+        <ul>
+        {% for answer in answers %}
+            <li>{{ answer.text }}</li>
+        {% endfor %}
+        </ul>
     <form action="{% url 'answer' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}

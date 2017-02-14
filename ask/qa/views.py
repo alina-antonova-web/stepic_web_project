@@ -39,8 +39,8 @@ def popular_questions_list(request):
 @require_GET
 def question_details(request, num):
     question = get_object_or_404(Question, id=num)
-    answers = Answer.objects.filter(question=num).order_by('-added_at').all()[:]
-    answer_form = AnswerForm({"question": question.id})
+    answers = Answer.objects.filter(question=num).order_by('-added_at')[0:10]
+    answer_form = AnswerForm(initial={'question': num})
     return render(request, 'question.html', {
         'question': question,
         'answers': answers,
@@ -51,15 +51,16 @@ def question_details(request, num):
 def answer_add(request):
     form = AnswerForm(request.POST)
     if form.is_valid():
-        form.author = 1
+        #form.author_id = 1
         answer = form.save()
-        return redirect(answer.question)
+        url = answer.question.get_url()
+        return HttpResponseRedirect(url)
 
 def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
-            form.author = 1
+            #form.author_id = 1
             question = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)

@@ -9,18 +9,20 @@
     {% for question in questions %}
         <p><a href="{{ question.get_url }}">{{ question.title }}</a></p>
     {% endfor %}
-    <nav>
-        <ul class="pagination">
-            {% for p in paginator.page_range %}
-                {% if p.number == page.number %}
-                    <li class="active">
-                {% else %}
-                    <li>
-                {% endif %}
-                        <a href="{{ paginator.baseurl }}{{p.number}}">{{p.number}}</a>
-                    </li>
-            {% endfor %}
-        </ul>
-    </nav>
+    {% if paginator.page_range.len > 1 %}
+        <nav>
+            <ul class="pagination">
+                {% for p in paginator.page_range %}
+                    {% if p.number == page.number %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                            <a href="{{ paginator.baseurl }}{{p.number}}">{{p.number}}</a>
+                        </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
 </body>
 </html>

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = [
     #url(r'^$', 'qa.views.test', name='home'),

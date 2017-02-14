@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^ask/$', ask, name='ask'),
     url(r'^popular/$', popular_questions_list, name='popular'),
     url(r'^new/$', new_questions_list, name='new_questions_list'),
-    url(r'^answer/$', answer_add, name='answer'),
 ]

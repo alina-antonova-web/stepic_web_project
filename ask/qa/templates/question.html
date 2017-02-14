@@ -13,7 +13,7 @@
             <li>{{ answer.text }}</li>
         {% endfor %}
         </ul>
-    <form action="{% url 'answer' %}" method="post">
+    <form action="{{ question.get_url }}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit" />

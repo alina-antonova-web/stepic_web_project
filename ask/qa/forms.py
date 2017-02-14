@@ -7,6 +7,12 @@ class AskForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = ["title", "text"]
+	
+    def save(self):
+        question = Question(**self.cleaned_data)
+        question.author_id = self._user.id
+        question.save()
+        return question
 
 class AnswerForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
@@ -25,5 +31,6 @@ class AnswerForm(forms.Form):
 
     def save(self):
         answer = Answer(**self.cleaned_data)
+        answer.author_id = self._user.id
         answer.save()
         return answer

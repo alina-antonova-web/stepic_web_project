@@ -21,7 +21,7 @@ def new_questions_list(request):
         'questions': page.object_list,
         'paginator': paginator,
         'page': page,
-        'user': request.user,
+        # 'user': request.user,
     })
 
 
@@ -34,7 +34,7 @@ def popular_questions_list(request):
         'questions': page.object_list,
         'paginator': paginator,
         'page': page,
-        'user': request.user,
+        # 'user': request.user,
     })
 
 
@@ -44,7 +44,7 @@ def question_details(request, num):
     if request.method == "POST":
         answer_form = AnswerForm(request.POST)
         if answer_form.is_valid():
-            answer_form._user = request.user
+            # answer_form._user = request.user
             answer = answer_form.save()
             url = answer.question.get_url()
             return HttpResponseRedirect(url)
@@ -54,7 +54,7 @@ def question_details(request, num):
     return render(request, 'question.html', {
         'question': question,
         'answers': answers,
-        'user': request.user,
+        # 'user': request.user,
         'form': answer_form,
     })
     
@@ -63,12 +63,13 @@ def ask(request):
     if request.method == "POST":
         form = AskForm(request.POST)
         if form.is_valid():
-            form._user = request.user
+            # form._user = request.user
             question = form.save()
             url = question.get_url()
             return HttpResponseRedirect(url)
     else:
         form = AskForm()
     return render(request, 'ask.html', {'form': form, 
-                                        'user': request.user, })
+                                        # 'user': request.user,
+                                        })
 

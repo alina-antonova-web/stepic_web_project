@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from qa.views import test, new_questions_list, popular_questions_list, question_details, ask, answer_add
+from qa.views import test, new_questions_list, popular_questions_list, question_details, ask
 
 urlpatterns = [
     url(r'^$', new_questions_list, name='home'),

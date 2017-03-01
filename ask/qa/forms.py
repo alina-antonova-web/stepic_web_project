@@ -67,9 +67,10 @@ class SignupForm(forms.Form):
         return make_password(password)
 
     def save(self):
-        user = User(**self.cleaned_data)
+        user = User.objects.create_user(**self.cleaned_data)
         user.save()
-        return user
+        auth = authenticate(**self.cleaned_data)
+        return auth
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100, required=False)
@@ -96,3 +97,7 @@ class LoginForm(forms.Form):
             raise forms.ValidationError('Wrong username or password')
         if not user.check_password(password):
             raise forms.ValidationError('Wrong username or password2')
+
+    def save(self):
+        user = authenticate(**self.cleaned_data)
+        return user

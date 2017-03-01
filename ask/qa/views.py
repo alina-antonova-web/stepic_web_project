@@ -94,16 +94,11 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
-            username = form.cleaned_data['username']
-            password = form.raw_password
-            user = authenticate(username=username, password=password)
-            print(type(user))
             if user is not None:
                 if user.is_active:
                     login(request, user)
-            return HttpResponseRedirect("/")
-    else:
-        form = SignupForm()
+                    return HttpResponseRedirect("/")
+    form = SignupForm()
     return render(request, 'signup.html', {'form': form,
                                            'user': request.user,
                                            'session': request.session, })
@@ -113,15 +108,12 @@ def my_login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
+            user = form.save()
             if user is not None:
                 if user.is_active:
                     login(request, user)
-            return HttpResponseRedirect('/')
-    else:
-        form = LoginForm()
+                    return HttpResponseRedirect('/')
+    form = LoginForm()
     return render(request, 'login.html', {'error': error,
                                           'form': form,
                                           'user': request.user,

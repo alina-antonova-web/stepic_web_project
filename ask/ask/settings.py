@@ -79,7 +79,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mybase',
         'USER': 'admin',
-        'PASSWORD': 'qweqwe123'
+        'PASSWORD': 'qweqwe123',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_ALL_TABLES'"
+        },
     }
 }
 
